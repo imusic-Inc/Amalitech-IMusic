@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import getData from "../api/backendcalls";
 import NewMessage from "../message/newMessage";
+import NotFound from "./404";
 
 function Notification(props) {
     const [type, setType] = useState('');
@@ -34,7 +35,7 @@ function Notification(props) {
         </svg>
            </div>
             <div className="notification-list">
-                {notifications.map((value,index) => {
+                {notifications.length>0? notifications.map((value,index) => {
                     return (<div onClick={() => {
                         if (value.notificationType === 'new message') {
                             setNewMessageId(value.userFrom._id);
@@ -47,7 +48,7 @@ function Notification(props) {
                     <h4>{value.notificationType}</h4>
                         <h6>{value.content}</h6>
                     </div>);
-                })}
+                }):<NotFound/>}
                 
             </div>
         </div>

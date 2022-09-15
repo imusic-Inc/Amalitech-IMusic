@@ -30,6 +30,8 @@ function InviteList(props) {
                     roomType: sessionResult.roomType,
                 }
                 setInvite(payload);
+            }).catch(() => {
+                
             });
         }
     }, []);
@@ -44,9 +46,9 @@ function InviteList(props) {
         </div>
         {<div className="flex-1 p-1">
             <div onClick={() => {
-                props.joinsession(invite.name, invite.roomType, invite.id,invite.inviteId);
+                props.joinsession(invite.name, invite.roomType, invite.id,props.value._id);
             }} className="btn bg-success button btn-default">Accept</div>
-            <div onClick={()=>props.declineFun(invite.inviteId)} className="btn bg-danger button btn-default">Decline</div>
+            <div onClick={()=>props.declineFun(props.value._id)} className="btn bg-danger button btn-default">Decline</div>
         </div>}
     </div>);
 }

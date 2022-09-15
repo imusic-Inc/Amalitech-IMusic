@@ -8,6 +8,7 @@ import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Passcode from "./passcode";
 import InviteList from "../session/inviteList";
+import NotFound from "./404";
 let linked = '';
 let inviteId = '';
 let seletedId = '';
@@ -42,7 +43,7 @@ function Join(props) {
 
 
 
-
+console.log(getInvite);
 
 
     function deleteFun(id) {
@@ -86,23 +87,18 @@ function Join(props) {
     }
 
     function declineFun(id) {
-        getData.rejectInvite('invite/reject', { "invitationId": id }).then(value => {
-            const getInv = getInvite.filter(value => value.inviteId !== id);
+        if (id) {
+             getData.rejectInvite('invite/reject', { "invitationId": id }).then(value => {
+            const getInv = getInvite.filter(value => value._id !== id);
             setInvite(getInv);
-         notify("invitation declined successfully");
-        })
+            notify("invitation declined successfully");
+        });
+        }
     }
-
-
-
-
 
     function show() {
         setShowpass(false);
     }
-
-
-    console.log(getInvite);
 
   return (
       <>
@@ -139,11 +135,12 @@ pauseOnHover
 <hr className="bg-primary"/>
 
 
-              <div className="join-list">
+              { (getInvite.length + getSession.length) < 0 ? <div className="join-list">
+
                   {getInvite.length > 0 ? getInvite.map(value => <InviteList value={value} key={value._id} declineFun={declineFun} joinsession={ joinsession }  /> ) :SearchLoading} 
                   {getSession.length > 0 ? getSession.map(value => <JoinList invite={false} key={value.id} name={value.name} description={value.description} id={value.id} photo={value.now_playing.image}  roomType={value.roomType} deleteFun={deleteFun} joinsession={ joinsession } /> ) :SearchLoading} 
                   
-</div>
+</div>:<NotFound/>}
 
           </div>
           

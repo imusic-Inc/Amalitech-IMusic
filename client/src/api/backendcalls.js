@@ -4,11 +4,12 @@ const getData = (function() {
 
 
 
-    const __getAuth = async(path) => {
+    const __getAuth = async(path,values={}) => {
         const result = await fetch(link + path, {
-            method: 'get',
+            method: 'POST',
             credentials: "include",
             withCredentials:true,
+            body: JSON.stringify(values),
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -471,8 +472,8 @@ withCredentials:true,
 
 
     return {
-        getAuth(path) {
-            return __getAuth(path);
+        getAuth(path,data) {
+            return __getAuth(path,data);
         },
          getSession(path) {
             return __getSession(path);

@@ -1,7 +1,4 @@
-const encodeFormData = require('../utils/actions');
 const querystring = require('querystring');
-const fetch = require('node-fetch')
-const got = require('got');
 const User = require('../models/userModel');
 const hookAsync = require('../utils/hookAsync');
 const jwt = require('jsonwebtoken');
@@ -9,8 +6,8 @@ const axios = require('axios').default;
 //oauth through spotify api
 
 const signToken = id => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN
+    return jwt.sign({ id }, 'mPkd23I1sE3wkXn-imusic-secure', {
+        expiresIn: '90d'
     });
 }
 
@@ -18,14 +15,11 @@ const createSendToken = (user, req, res, ) => {
     const token = signToken(user._id);
     res.cookie('jwt', token, {
         expires: new Date(
-            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+            Date.now() + 90 * 24 * 60 * 60 * 1000
         ),
-        httpOnly: true,
-        sameSite: "none",
         secure: req.secure || req.headers['x-forwarded-proto'] === 'https' || true
     });
     user.password = undefined //remove password from response output
-
 }
 
 
@@ -55,70 +49,62 @@ let query;
 //gets log user credentials
 exports.logged = async(req, res, next) => {
 
-    const body = {
-        grant_type: 'authorization_code',
-        code: req.query.code,
-        redirect_uri: process.env.REDIRECTURI,
-        client_id: process.env.CLIENT_ID,
-        client_secret: process.env.CLIENT_SECRET,
-    }
+    // await fetch('https://accounts.spotify.com/api/token', {
+    //         method: 'POST',
+    //         headers: {
+    //             "Content-Type": "application/x-www-form-urlencoded",
+    //             "Accept": "application/json"
+    //         },
+    //         body: encodeFormData(body)
+    //     })
+    //     .then(response => response.json())
 
-    await fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Accept": "application/json"
-            },
-            body: encodeFormData(body)
-        })
-        .then(response => response.json())
-
-    .then(data => {
-        query = querystring.stringify(data);
+    // .then(data => {
+    //     query = querystring.stringify(data);
 
 
-    }).catch(err => res.redirect(`${process.env.CLIENT_REDIRECTURI}`))
+    // }).catch(err => res.redirect(`${process.env.CLIENT_REDIRECTURI}`))
+
     next()
 
 };
 
-exports.getUser = hookAsync(async(req, res) => {
-    let userQuery = query.split('&')[0];
-    let { body } = await got(`https://api.spotify.com/v1/me?${userQuery}`, { json: true });
-    //console.log(body);
-    //extract name,email,photo
-    if (!body) {
-        res.redirect(`${process.env.CLIENT_REDIRECTURI}`)
+exports.getUser = hookAsync(async (req, res) => {
+    const body = req.body;
+    // extract name,email,photo
+    if (!body.email) {
+        res.status(404).json('Something went wrong');
     }
-    const findUser = await User.find({ email: body.email })
+
+    const findUser = await User.find({ email: body.email });
+
 
     if (findUser.length === 0) {
-        //we store spotify user data in our database
         const newUser = await User.create({
             name: body.display_name,
             email: body.email,
             password: body.id,
             passwordConfirm: body.id,
-            photo: body.images[0].url
+            photo: body.url
         });
 
-        createSendToken(newUser, req, res)
-        res.redirect(`${process.env.CLIENT_REDIRECTURI}?${query}`);
+        createSendToken(newUser, req, res);
+        res.status(200).json(body);
 
     } else {
         const user = await User.findOne({ email: body.email }).select('+password');
-
         if (!user || !(await user.correctPassword(body.id, user.password))) {
-            return next(new AppError('Incorrect email or password', 401))
+            return res.status(401).json({
+                "statusCode": 403,
+                "status": "fail",
+                "isOperational": true,
+                "message": 'Incorrect email or password'
+            });
         }
-
-        createSendToken(user, req, res)
-        res.redirect(`${process.env.CLIENT_REDIRECTURI}?${query}`);
-
-
-
+        createSendToken(user, req, res);
+        res.status(200).json(user);
     }
-})
+});
 
 
 exports.refreshToken = async(req, res) => {

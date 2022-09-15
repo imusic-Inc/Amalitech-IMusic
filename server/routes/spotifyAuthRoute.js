@@ -6,7 +6,7 @@ const router = express.Router();
 router
     .get('/', login)
 router
-    .get('/logged', logged, getUser)
+    .post('/logged', logged, getUser)
 router
     .get('/refreshToken', refreshToken)
 

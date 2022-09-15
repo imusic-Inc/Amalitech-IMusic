@@ -213,14 +213,25 @@ exports.joinRoomSession = hookAsync(async(req, res, next) => {
         }
     } else {
         //joining a private room
+        
         if (!req.user) {
-            return next(new AppError('Only registered users have permission to perform this action ', 403));
+            return  res.status(403).json({
+    "statusCode": 403,
+    "status": "fail",
+    "isOperational": true,
+    "message":'Only registered users have permission to perform this action '
+});
         }
 
         const { lock } = req.body;
 
         if (!lock) {
-            return next(new AppError('Please provide a lock code!', 401)); //401 which means unauthoried
+            return res.status(401).json({
+    "statusCode": 403,
+    "status": "fail",
+    "isOperational": true,
+    "message":'Please provide a lock code!'
+});//401 which means unauthoried
         }
 
         //explicitly call roomId with lock which was false in the schema 
@@ -231,7 +242,12 @@ exports.joinRoomSession = hookAsync(async(req, res, next) => {
         //compare the user lock code with encrypted lock code
 
         if (!session || !(await session.correctlock(lock, session.lock))) {
-            return next(new AppError('Incorrect room lock', 401))
+            return  res.status(401).json({
+    "statusCode": 403,
+    "status": "fail",
+    "isOperational": true,
+    "message":'Incorrect room lock'
+});
         }
 
 

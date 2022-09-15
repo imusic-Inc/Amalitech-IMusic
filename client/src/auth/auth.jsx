@@ -3,7 +3,6 @@ import Cookies from "universal-cookie";
 import getData from "../api/backendcalls";
 import { useNavigate } from "react-router-dom";
 import APIController from "../api/spotifyApi";
-import keys from "../api/keys";
 function Auth(props) {
   const [pathed, setPath] = useState("");
   const [userName, setUserName] = useState("");
@@ -11,7 +10,7 @@ function Auth(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const paths = new URLSearchParams(window.location.search);
+    const paths = new URL(window.location.href.replace('#', "?")).searchParams;
     const token = paths.get("access_token");
     const refresh = paths.get("refresh_token");
 
@@ -40,9 +39,26 @@ function Auth(props) {
   });
 
   function authenticate(tokens, refresh) {
-    APIController.getUser(tokens).then((value) => {
-      // const expires = 1000 * 60 * 60;
-      if (value.error) {
+    APIController.getUser(tokens).then((valueed) => {
+      if (!valueed.error) {
+         getData.getAuth('auth/logged', {
+        'email': valueed.email,
+        'display_name': valueed.name,
+        'id': valueed.id,
+        'url': valueed.photo,
+      }).then(value => {
+      cookies.set("access_token", tokens);
+          cookies.set("refresh_token", refresh);
+          cookies.set("name", value.name);
+          cookies.set("email", value.email);
+          cookies.set("uid", value._id);
+          cookies.set("photo", value.photo);
+          cookies.set("setDate", Date.now());
+          cookies.set("product", value.product);
+          setUserName(value.name);
+          setPath(tokens);
+      });
+      } else {
         setPath("");
         cookies.set("name", null);
         cookies.set("access_token", null);
@@ -53,19 +69,6 @@ function Auth(props) {
         cookies.set("jwt", null);
         cookies.set("photo", null);
         cookies.set("product", null);
-      } else {
-        getData.getUserByEmail("users", value.email).then((value) => {
-          cookies.set("access_token", tokens);
-          cookies.set("refresh_token", refresh);
-          cookies.set("name", value.name);
-          cookies.set("email", value.email);
-          cookies.set("uid", value._id);
-          cookies.set("photo", value.photo);
-          cookies.set("setDate", Date.now());
-          cookies.set("product", value.product);
-          setUserName(value.name);
-          setPath(tokens);
-        });
       }
     });
   }
@@ -101,7 +104,8 @@ function Auth(props) {
               With a free account, you can listen to full songs.
             </h1>
             <div className="login-btn btn p-1 mb-1">
-              <a data-testid="signin" href={`https://amalitech-imusic.herokuapp.com/api/v1/auth`}>
+              <a data-testid="signin" href={`https://accounts.spotify.com/en/authorize?response_type=token&client_id=54673c0582e44ae4af3c2b345ab1bbe7&redirect_uri=http://localhost:3000/login&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state&show_dialog=true
+`}>
                 <span className="btn-login">
                   {pathed && pathed.length > 10 ? "LOADING..." : "SIGN UP FREE"}
                 </span>
@@ -109,8 +113,9 @@ function Auth(props) {
             </div>
             <h6 className="p-01 pt-3">
               Already have and account?{" "}
-              <a
-                href={`https://amalitech-imusic.herokuapp.com/api/v1/auth`}
+          <a
+                href={`https://accounts.spotify.com/en/authorize?response_type=token&client_id=54673c0582e44ae4af3c2b345ab1bbe7&redirect_uri=http://localhost:3000/login&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state&show_dialog=true
+`}
                 className="sign-in pl-1 btn"
               >
                 Sign me in

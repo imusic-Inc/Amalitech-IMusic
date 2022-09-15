@@ -82,8 +82,9 @@ exports.login = hookAsync(async(req, res, next) => {
 
 
 
-exports.protect = hookAsync(async(req, res, next) => {
+exports.protect = hookAsync(async (req, res, next) => {
     //1)Getting token and if it exist
+
     let token;
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
 
@@ -96,33 +97,48 @@ exports.protect = hookAsync(async(req, res, next) => {
 
 
     if (!token) {
-        return next(new AppError('You are not logged in to get access.', 401))
-    }
+        return res.status(401).json({
+    "statusCode": 401,
+    "status": "fail",
+    "isOperational": true,
+    "message":"You are not logged in to get access."
+});
+    };
 
     //2)verification token
 
-    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    const decoded = await promisify(jwt.verify)(token, 'mPkd23I1sE3wkXn-imusic-secure');
     //console.log(decoded);
     //3) Check if user still exists
 
 
     const currentUser = await User.findById(decoded.id) //check id from payload
     if (!currentUser) {
-        return next(new AppError('The user belonging to this token does no longer exist', 401))
+        return res.status(401).json({
+    "statusCode": 401,
+    "status": "fail",
+    "isOperational": true,
+    "message":'The user belonging to this token does no longer exist'
+});
     }
 
     //4)Check if use changed password after the token was issued
 
 
     if (currentUser.changedPasswordAfter(decoded.iat)) {
-        return next(new AppError('User recently changed password! Please log in again', 401));
-    }
+        return res.status(401).json({
+    "statusCode": 401,
+    "status": "fail",
+    "isOperational": true,
+    "message":'User recently changed password! Please log in again'
+});
+    };
 
     //Grant access to protected route
     req.user = currentUser;
 
     next()
-})
+});
 
 
 
@@ -132,7 +148,12 @@ exports.restrictTo = (...roles) => {
     return (req, res, next) => {
         //roles is an array ['admin','room-admin']. role is now user
         if (!roles.includes(req.user.role)) {
-            return next(new AppError('You do not have permission to perform this action', 403)) //403 MEANS forbidden
+            return res.status(401).json({
+    "statusCode": 401,
+    "status": "fail",
+    "isOperational": true,
+    "message":'User recently changed password! Please log in again'
+}); //403 MEANS forbidden
         }
         next();
 
@@ -141,8 +162,7 @@ exports.restrictTo = (...roles) => {
 
 
 exports.logout = (req, res) => {
-
-    res.cookie('jwt', 'loggedout', {
+    res.cookie('jwt', null, {
         expires: new Date(Date.now() + 10 * 1000),
         httpOnly: true
     });
@@ -152,10 +172,7 @@ exports.logout = (req, res) => {
 
 //for rendering and checking user authentication status, no error!
 exports.isLoggedIn = async(req, res, next) => {
-
-
     if (req.cookies.jwt) {
-
         try {
             // 1) verify token
             const decoded = await promisify(jwt.verify)(
@@ -176,9 +193,7 @@ exports.isLoggedIn = async(req, res, next) => {
 
             // THERE IS A LOGGED IN USER
             res.locals.user = currentUser;
-            req.user = currentUser
-
-            console.log(req.user)
+            req.user = currentUser;
             return next();
         } catch (err) {
             return next();

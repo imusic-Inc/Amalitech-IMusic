@@ -15,8 +15,9 @@ function Auth() {
   
   
   // get user notification
-    useEffect(() => {
-      getData.getNotification('notification').then(value => {
+  useEffect(() => {
+    if (name.length > 3 && email.length > 5) {
+         getData.getNotification('notification').then(value => {
         if (value.status === 'success') {
           if (value.data.notifications.length > 0) {
             setNotification(value.data.notifications);
@@ -28,7 +29,8 @@ function Auth() {
           }
         }
     });
-    }, []);
+    };
+    }, [name,email]);
     
     
 

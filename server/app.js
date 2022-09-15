@@ -106,12 +106,6 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
-// Handle GET requests to /api route
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
-
-
 // 3) ROUTES
 app.use("/api/v1/auth", spotifyAuth)
 app.use("/api/v1/session", sessionRouter)

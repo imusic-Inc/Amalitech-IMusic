@@ -17,6 +17,7 @@ const createSendToken = (user, req, res, ) => {
         expires: new Date(
             Date.now() + 90 * 24 * 60 * 60 * 1000
         ),
+        sameSite:true,
         secure: req.secure || req.headers['x-forwarded-proto'] === 'https' || true
     });
     user.password = undefined //remove password from response output

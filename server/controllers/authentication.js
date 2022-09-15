@@ -21,7 +21,8 @@ exports.createSendToken = (user, statusCode, res) => {
 
     }
     if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
-    res.cookie('jwt', token, cookieOptions);
+    res.cookie('jwt', token,
+        cookieOptions);
 
     user.password = undefined //remove password from response output
     res.status(statusCode).json({
@@ -163,7 +164,8 @@ exports.restrictTo = (...roles) => {
 exports.logout = (req, res) => {
     res.cookie('jwt', null, {
         expires: new Date(Date.now() + 10 * 1000),
-        httpOnly: true
+        httpOnly: true,
+        sameSite:true,
     });
     res.status(200).json({ status: null });
 };

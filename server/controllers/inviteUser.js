@@ -10,11 +10,8 @@ exports.inviteUser = hookAsync(async(req, res, next) => {
     const { receiverEmailAddress, session } = req.body;
 
     if (!session) {
-        res
-            .status(404)
-            .json(
-                "Session room is required"
-            );
+
+        return next(new AppError("Session room is required", 404)); //401 which means unauthoried 
     }
 
     // check if user is inviting himself
@@ -26,23 +23,20 @@ exports.inviteUser = hookAsync(async(req, res, next) => {
     const targetUser = await User.findOne({ email: receiverEmailAddress });
 
     if (!targetUser) {
-        res
-            .status(404)
-            .json(
-                "Sorry, the user you are trying to invite doesn't exist. Please check the email address"
-            );
+
+        return next(new AppError("Sorry, the user you are trying to invite doesn't exist. Please check the email address", 404)); //401 which means unauthoried
     }
 
     // check if invitation has already been sent
     const invitationAlreadyExists = await UserInvitation.findOne({
         senderId: _id,
         receiverId: targetUser._id,
+        sessionId: session
+
     });
 
     if (invitationAlreadyExists) {
-        res
-            .status(409)
-            .json("You have already sent an invitation to this user");
+        return next(new AppError('You have already sent an invitation to this user', 401)); //401 which means unauthoried
     }
 
 
@@ -103,18 +97,16 @@ exports.acceptInvitation = hookAsync(async(req, res, next) => {
 })
 
 
-exports.rejectInvitation = hookAsync(async(req, res, next) => {
+exports.rejectInvitation = hookAsync(async (req, res, next) => {
     const { invitationId } = req.body;
 
     // check if invitation exists
     const invitation = await UserInvitation.exists({ _id: invitationId });
 
     if (!invitation) {
-        res
-            .status(404)
-            .json(
-                "Sorry, the invitation you are trying to reject doesn't exist"
-            );
+
+
+        return next(new AppError("Sorry, the invitation you are trying to reject doesn't exist", 404));
     }
 
     // reject the invitation
@@ -123,4 +115,4 @@ exports.rejectInvitation = hookAsync(async(req, res, next) => {
 
     return res.status(200).json("Invitation rejected successfully!");
 
-})
+});

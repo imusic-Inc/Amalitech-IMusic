@@ -47,28 +47,28 @@ function Auth(props) {
         'id': valueed.id,
         'url': valueed.photo,
       }).then(value => {
-      cookies.set("access_token", tokens);
-          cookies.set("refresh_token", refresh);
-          cookies.set("name", value.name);
-          cookies.set("email", value.email);
-          cookies.set("uid", value._id);
-          cookies.set("photo", value.photo);
-          cookies.set("setDate", Date.now());
-          cookies.set("product", value.product);
+      cookies.set("access_token", tokens,{sameSite:true});
+          cookies.set("refresh_token", refresh,{sameSite:true});
+          cookies.set("name", value.name,{sameSite:true});
+          cookies.set("email", value.email,{sameSite:true});
+          cookies.set("uid", value._id,{sameSite:true});
+          cookies.set("photo", value.photo,{sameSite:true});
+          cookies.set("setDate", Date.now(),{sameSite:true});
+          cookies.set("product", value.product,{sameSite:true});
           setUserName(value.name);
           setPath(tokens);
       });
       } else {
         setPath("");
-        cookies.set("name", null);
-        cookies.set("access_token", null);
-        cookies.set("refresh_token", null);
-        cookies.set("email", null);
-        cookies.set("setDate", null);
-        cookies.set("uid", null);
-        cookies.set("jwt", null);
-        cookies.set("photo", null);
-        cookies.set("product", null);
+        cookies.set("name", null,{sameSite:true});
+        cookies.set("access_token", null,{sameSite:true});
+        cookies.set("refresh_token", null,{sameSite:true});
+        cookies.set("email", null,{sameSite:true});
+        cookies.set("setDate", null,{sameSite:true});
+        cookies.set("uid", null,{sameSite:true});
+        cookies.set("jwt", null,{sameSite:true});
+        cookies.set("photo", null,{sameSite:true});
+        cookies.set("product", null,{sameSite:true});
       }
     });
   }

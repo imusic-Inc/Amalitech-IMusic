@@ -22,20 +22,16 @@ const token = cookies.get('access_token');
     },[signout,token]);
     
     function logOut() {
-        getData.logOut('users/logout').then(value => {
-            if (value.status === 'success' || value.status === 'logged out') {
-                cookies.set("name",null);
-                cookies.set("access_token", null);
-                cookies.set("refresh_token",null);
-                cookies.set("email", null);
-                cookies.set("setDate", null);
-                cookies.set("uid", null);
-                cookies.set("photo", null);
-                cookies.set("product", null);
+        getData.logOut('users/logout');
+                cookies.set("name",null,{sameSite:true});
+                cookies.set("access_token", null,{sameSite:true});
+                cookies.set("refresh_token",null,{sameSite:true});
+                cookies.set("email", null,{sameSite:true});
+                cookies.set("setDate", null,{sameSite:true});
+                cookies.set("uid", null,{sameSite:true});
+                cookies.set("photo", null,{sameSite:true});
+                cookies.set("product", null,{sameSite:true});
                 window.location.reload();
-            }
-   
-        });
 }
 
     let managSession = Manasession === "Join"?<Join onClick = {hideManasession} />:<></>;

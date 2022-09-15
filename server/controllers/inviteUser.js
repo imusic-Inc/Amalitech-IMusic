@@ -16,7 +16,8 @@ exports.inviteUser = hookAsync(async(req, res, next) => {
 
     // check if user is inviting himself
     if (email === receiverEmailAddress) {
-        res.status(400).json("Sorry, you can't invite yourself");
+
+        return next(new AppError("Sorry, you can't invite yourself", 404)); //401 which means unauthoried 
     }
 
     // check if the invited user exists in the database
@@ -72,7 +73,6 @@ exports.acceptInvitation = hookAsync(async(req, res, next) => {
     }
 
 
-    console.log(req.params.id);
 
     // check if invitation exists
     const invitation = await UserInvitation.exists({ _id: invitationId });
@@ -97,7 +97,7 @@ exports.acceptInvitation = hookAsync(async(req, res, next) => {
 })
 
 
-exports.rejectInvitation = hookAsync(async (req, res, next) => {
+exports.rejectInvitation = hookAsync(async(req, res, next) => {
     const { invitationId } = req.body;
 
     // check if invitation exists

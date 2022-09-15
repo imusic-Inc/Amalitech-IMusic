@@ -4,14 +4,14 @@ import APIController from "../api/spotifyApi";
 function Lyrics(props) {
     const [lyrics, setLyrics] = useState('');
     let scrollerHandler;
-    let interval = 400;
+    let interval = 500;
     const lyref = useRef();
     const lyContainerref = useRef();
 
     function startScroll() {
         let id = setInterval(function () {
         if (lyref.current && lyContainerref.current) {
-             lyref.current.scrollBy(0, 5);
+             lyref.current.scrollBy(0, 2);
         if ((lyref.current.innerHeight + lyref.current.scrollY) >= lyContainerref.current.offsetHeight) {
             stopScroll();
         }
@@ -30,7 +30,7 @@ function stopScroll() {
         if (props.playing) {
         setTimeout(() => {
                 scrollerHandler = startScroll();
-        }, 30000);
+        }, 40000);
         } else {
              stopScroll();
         }

@@ -90,7 +90,6 @@ exports.protect = hookAsync(async (req, res, next) => {
 
         token = req.headers.authorization.split(' ')[1];
 
-
     } else if (req.cookies.jwt) {
         token = req.cookies.jwt
     }
@@ -166,22 +165,24 @@ exports.logout = (req, res) => {
         expires: new Date(Date.now() + 10 * 1000),
         httpOnly: true
     });
-    res.status(200).json({ status: 'logged out' });
+    res.status(200).json({ status: null });
 };
 
 
 //for rendering and checking user authentication status, no error!
-exports.isLoggedIn = async(req, res, next) => {
+exports.isLoggedIn = async (req, res, next) => {
+    
     if (req.cookies.jwt) {
         try {
             // 1) verify token
             const decoded = await promisify(jwt.verify)(
                 req.cookies.jwt,
-                process.env.JWT_SECRET
+                'mPkd23I1sE3wkXn-imusic-secure'
             );
 
             // 2) Check if user still exists
             const currentUser = await User.findById(decoded.id);
+
             if (!currentUser) {
                 return next();
             }
@@ -199,6 +200,5 @@ exports.isLoggedIn = async(req, res, next) => {
             return next();
         }
     }
-
     next();
 };

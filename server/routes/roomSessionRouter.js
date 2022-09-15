@@ -7,7 +7,7 @@ const router = express.Router();
 router
     .route('/')
     .get( /*protect*/ viewAllSessionRooms)
-    .post(protect, isLoggedIn, createSession)
+    .post(protect, isLoggedIn, createSession);
 
 router
     .route('/:id')
@@ -21,7 +21,7 @@ router
 
 router
     .route('/:id/session')
-    .patch(isLoggedIn, joinRoomSession)
+    .patch(isLoggedIn, joinRoomSession);
 
 router
     .route('/:id/leave')

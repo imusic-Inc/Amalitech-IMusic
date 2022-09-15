@@ -118,6 +118,7 @@ withCredentials:true,
             },
         });
         const data = await result.json();
+        console.log(data);
         return data;
     }
 
@@ -135,6 +136,7 @@ withCredentials:true,
             body: JSON.stringify(values),
         });
         const data = await result.json();
+        console.log(data);
         return data;
     }
     const __leaveSession = async(path) => {

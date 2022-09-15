@@ -72,11 +72,10 @@ function Join(props) {
 
 
     function deleteFun(id) {
-        getData.deleteSession('session/' + id).then(value => {
-            const getMySession = getSession.filter(value => value.id !== id);
-            setSession(getMySession);
-            notify("Session deleted successfully");
-        })
+        getData.deleteSession('session/' + id);
+        const getMySession = getSession.filter(value => value.id !== id);
+        setSession(getMySession);
+        notify("Session deleted successfully");
        
     }
 

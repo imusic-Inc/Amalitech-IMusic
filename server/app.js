@@ -34,7 +34,7 @@ app.set('trust proxy', 1)
 
 app.use(
     session({
-        secret: process.env.SESSION_SECRET,
+        secret: 'process.env.SESSION_SECRET',
         resave: true,
         saveUninitialized: false,
         cookie: {
@@ -43,13 +43,13 @@ app.use(
         }
     })
 );
-const corsOptions = {
-    origin: 'https://imusicroom.netlify.app', // frontend server address
-    credentials: true,
-    optionsSuccessStatus: 200
-}
+// const corsOptions = {
+//     origin: 'https://imusicroom.netlify.app', // frontend server address
+//     credentials: true,
+//     optionsSuccessStatus: 200
+// }
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Set security HTTP headers
 app.use(helmet());
@@ -64,8 +64,6 @@ if (process.env.NODE_ENV === "development") {
 //     app.use(express.static(path.join(__dirname, '/public')));
 
 // }
-
-
 
 
 app.use(express.json({ limit: '10kb' }));
@@ -84,7 +82,7 @@ app.use(monogoSanitize());
 app.use(xss());
 
 
-app.use(compression())
+app.use(compression());
 
 // Prevent parameter pollution
 app.use(
@@ -103,8 +101,14 @@ app.use(
 // Test middleware
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
-
     next();
+});
+
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+
+// Handle GET requests to /api route
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from server!" });
 });
 
 
@@ -118,18 +122,26 @@ app.use('/api/v1/privateMessage', privateMessageRouter);
 app.use('/api/v1/invite', inviteRouter);
 app.use('/api/v1/notification', notificationRouter);
 
-app.all('*', (req, res, next) => {
-    // res.status(404).json({
-    //     status: 'fail',
-    //     message: `Can't find ${req.originalUrl} on this server`
-    // })
-    // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-    // err.status = 'fail';
-    // err.statusCode = 404;
+// app.all('*', (req, res, next) => {
+//     // res.status(404).json({
+//     //     status: 'fail',
+//     //     message: `Can't find ${req.originalUrl} on this server`
+//     // })
+//     // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
+//     // err.status = 'fail';
+//     // err.statusCode = 404;
 
-    next(new AppError(`Can't find ${req.originalUrl} on this server`), 404);
+//     next(new AppError(`Can't find ${req.originalUrl} on this server`), 404);
+// });
+
+
+
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
 app.use(globalErrorhandler);
+
 
 module.exports = app;

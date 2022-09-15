@@ -13,10 +13,10 @@ process.on('uncaughtException', err => {
 
 const app = require('./app')
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 
-const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+const DB = 'mongodb+srv://crimson:<PASSWORD>@cluster0.yygi5.mongodb.net/imusic'.replace('<PASSWORD>', 'Jd1uNlF08uyjJ2cT');
 mongoose.connect(DB, {
         useNewUrlParser: true,
         useCreateIndex: true,

@@ -50,7 +50,7 @@ app.use(
 app.use(cors());
 
 // Set security HTTP headers
-app.use(helmet());
+// app.use(helmet());
 
 //Development logging
 if (process.env.NODE_ENV === "development") {
@@ -77,7 +77,7 @@ app.use(cookieParser());
 app.use(monogoSanitize());
 
 //Data sanitization against xss
-app.use(xss());
+// app.use(xss());
 
 
 app.use(compression());

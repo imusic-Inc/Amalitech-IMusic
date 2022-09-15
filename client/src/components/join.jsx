@@ -135,7 +135,7 @@ pauseOnHover
 <hr className="bg-primary"/>
 
 
-              { (getInvite.length + getSession.length) < 0 ? <div className="join-list">
+              { (getInvite.length + getSession.length) > 0 ? <div className="join-list">
 
                   {getInvite.length > 0 ? getInvite.map(value => <InviteList value={value} key={value._id} declineFun={declineFun} joinsession={ joinsession }  /> ) :SearchLoading} 
                   {getSession.length > 0 ? getSession.map(value => <JoinList invite={false} key={value.id} name={value.name} description={value.description} id={value.id} photo={value.now_playing.image}  roomType={value.roomType} deleteFun={deleteFun} joinsession={ joinsession } /> ) :SearchLoading} 

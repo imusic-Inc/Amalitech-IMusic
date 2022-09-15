@@ -1,0 +1,34 @@
+{
+  "name": "imusic",
+  "version": "1.0.0",
+  "description": "In the middle of a pandemic where it is best for people to stay isolated. A client wants to build a collaborative music listening application where users from around the world can come together and have fun listening to music right from the comfort of their homes whilst they interact with each other.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imusic-Inc/Amalitech-IMusic.git"
+  },
+  "keywords": [
+    "music",
+    "song",
+    "spotify",
+    "room",
+    "playlist",
+    "stream"
+  ],
+  "author": "Amalitech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imusic-Inc/Amalitech-IMusic/issues"
+  },
+  "engines": {
+  "node": "v16.14.2"
+},
+  "homepage": "https://github.com/imusic-Inc/Amalitech-IMusic#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

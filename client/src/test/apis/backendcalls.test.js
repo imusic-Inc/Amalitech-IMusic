@@ -1,0 +1,1 @@
+//The backend server has cors protection and can only work on the producton domain

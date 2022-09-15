@@ -1,0 +1,15 @@
+{
+  "short_name": "IMusic Room",
+  "name": "In the middle of a pandemic where it is best for people to stay isolated. A client wants to build a collaborative music listening application where users from around the world can come together and have fun listening to music right from the comfort of their homes whilst they interact with each other.",
+  "icons": [
+    {
+      "src": "%PUBLIC_URL%/images/favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1A2B39",
+  "background_color": "#201D1D"
+}

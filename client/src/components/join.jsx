@@ -29,7 +29,10 @@ function Join(props) {
             setSession(getMySession);
     });
     
+        
+        
         getData.getInvite('invite').then(value1 => {
+            console.log(value1);
             if (value1) {
                value1.forEach(element => {
                 const sender = getUser(element.senderId);
@@ -45,6 +48,7 @@ function Join(props) {
                         photo:sessionResult.now_playing.image,
                         roomType:sessionResult.roomType,
                     }
+
                     invites.add(payload)
                     setInvite([...invites].filter((v,i,a)=>a.findLastIndex(v2=>(v2.place === v.place))===i));
                 });
@@ -126,6 +130,10 @@ function Join(props) {
     function show() {
         setShowpass(false);
     }
+
+
+    console.log(getInvite);
+
   return (
       <>
       <ToastContainer
@@ -162,7 +170,7 @@ pauseOnHover
 
 
               <div className="join-list">
-                  {getInvite.length > 0 ? getInvite.map(value => <JoinList invite={true} key={value.id} name={value.name} description={value.description} inviteId={value.inviteId} id={value.id} photo={value.photo}  roomType={value.roomType} declineFun={declineFun} joinsession={ joinsession } /> ) :SearchLoading} 
+                  {getInvite.length > 0 ? getInvite.map(value => {<JoinList invite={true} key={value.id} name={value.name} description={value.description} inviteId={value.inviteId} id={value.id} photo={value.photo}  roomType={value.roomType} declineFun={declineFun} joinsession={ joinsession } /> }) :SearchLoading} 
                   {getSession.length > 0 ? getSession.map(value => <JoinList invite={false} key={value.id} name={value.name} description={value.description} id={value.id} photo={value.now_playing.image}  roomType={value.roomType} deleteFun={deleteFun} joinsession={ joinsession } /> ) :SearchLoading} 
                   
 </div>

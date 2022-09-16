@@ -194,7 +194,7 @@ exports.joinRoomSession = hookAsync(async(req, res, next) => {
                 session.guest.push({
                     _id: _id,
                     name: "guest user",
-                    photo: "https://instagram.fnap3-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fnap3-1.fna.fbcdn.net&_nc_cat=1&_nc_ohc=wSka0ViJGd0AX8Apgjd&edm=ALXcmt0BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-5&oh=00_AT9kbX7WncY_sNGNdrTvGZ5XeMOgPipzAj9YTMo9B7Qzmg&oe=6317FE8F&_nc_sid=19f95a"
+                    photo: "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
                 })
                 await session.save();
 

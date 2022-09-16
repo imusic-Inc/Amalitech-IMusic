@@ -8,7 +8,6 @@ function App() {
     <div className='flex-row bg-primary'>
       <Router>
         <Switch>
-        
         <Route path="/room" element={<Room />} />
           <Route path="/room/:id" element={<Room />} />
           <Route path="/login" element={<Auth/>} />

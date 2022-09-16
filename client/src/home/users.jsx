@@ -3,7 +3,7 @@ import { useState } from "react";
 import getData from "../api/backendcalls";
 import MemberList from "../message/memberList";
 import NewMessage from "../message/newMessage";
-function Users() {
+function Users(props) {
     const [expand, setexpand] = useState("50px");
     const [iconShow, seticonShow] = useState(true);
     const [showNewMessage, setshowNewMessage] = useState(false);
@@ -40,8 +40,11 @@ useEffect(() => {
         }
     }, [search]);
 
-  return (<>
-      <div className="messaging-members " style={{ height: expand,bottom: '0px', }}>
+
+    const bot = window.screen.availWidth > 600 ? '0px' : '70px';
+    return (<>
+      
+      <div className="messaging-members " style={{ height: expand,bottom:  bot, }}>
         <div className="flex-row flex-center flex-space  pt-01">
         <h4 className="flex-5 p-01">
             iMusic Members
@@ -84,6 +87,8 @@ useEffect(() => {
               ) : null}
           </div>
       </div>
+
+
       {showNewMessage ? <NewMessage show={hideManasession} home={'home'} id={NewMessageId} name={NewMessageReciever} />:<></>}
       </>
   );

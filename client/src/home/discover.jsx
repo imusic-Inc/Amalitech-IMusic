@@ -31,7 +31,7 @@ const cookies = new Cookies();
 <h1 className="fixed bg-primary title">iMusic Rooms</h1>
       </div>
       
-      {token && token.length > 10 ? <Users /> : null}
+      {token && token.length > 10 ?  <Users />: null}
       <PublicSessionImusic name={"IMusic Public Rooms"} type={'public' } />
     <PublicSessionImusic name={"IMusic Private Rooms"} type={'private' } />
 

@@ -32,6 +32,8 @@ function Invite(props) {
     },[search,source]);
 
 
+
+
     return (<div className='invite bg-default b-r-1 p-1'>
         <h1 className='text-right pr-1 pt-01 btn' >
             <svg  onClick={props.show} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor"
@@ -50,7 +52,7 @@ function Invite(props) {
                 </div>
             </div>
             <div className='playList-list-save'>
-                {users.length > 0 ? users.map(value => <InviteList key={value._id} track={value.name} by={value.email} toId={value.id} image={value.photo} id={props.id} />):<SearchLoading/>}
+                {users.length > 0 ? users.map(value => <InviteList key={value._id} track={value.name} by={value.email} toId={value._id} image={value.photo} id={props.id} />):<SearchLoading/>}
             </div>
         </div>
     </div>);

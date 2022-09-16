@@ -8,12 +8,13 @@ const notify = (message) => {
         toast.info(message, {
             autoClose: 2000,
         });
-    };
+};
 
 function invite() {
     getData.inviteUser('invite', { "receiverEmailAddress": props.by, 'session': props.id }).then(value => {
         notify(value);
-        getData.createNotification('notification/new', { receiverId: props.by, alertMessage: 'invite', content: `Hello there, ${cookies.get('name')} invited you to participate in a room session.`});
+        // if()
+        getData.createNotification('notification/new', { receiverId: props.toId, alertMessage: 'invite', content: `Hello there, ${cookies.get('name')} invited you to participate in a room session.`});
     });
 }
 

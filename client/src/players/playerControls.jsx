@@ -79,7 +79,7 @@ if (props.type === 'private' ? props.isAdmin === props.uid ? false : true : fals
     return () => clearInterval(interval);
     }
 
-     //chceck if is streaming
+     //check if is streaming
     if (props.type === 'private' ? props.isAdmin === props.uid ? false : true : false) {
   setTimeout(() => {
       changState(isplaying); 

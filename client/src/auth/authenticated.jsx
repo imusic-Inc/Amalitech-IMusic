@@ -17,7 +17,8 @@ function Auth() {
   // get user notification
   useEffect(() => {
     if (name.length > 3 && email.length > 5) {
-         getData.getNotification('notification').then(value => {
+      getData.getNotification('notification').then(value => {
+           console.log(value);
         if (value.status === 'success') {
           if (value.data.notifications.length > 0) {
             setNotification(value.data.notifications);

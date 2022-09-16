@@ -34,10 +34,14 @@ function NewMessage(props) {
 
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        if (message_id) {
+             const interval = setInterval(() => {
             getMessage(message_id);
-  }, 1000);
+        }, 1000);
   return () => clearInterval(interval);
+        }
+       
+  
 }, []);
 
 

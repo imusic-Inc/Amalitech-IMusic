@@ -2,6 +2,7 @@ import { useEffect,useState } from "react";
 import getData from "../api/backendcalls";
 import NewMessage from "../message/newMessage";
 import NotFound from "./404";
+import Join from "./join";
 
 function Notification(props) {
     const [type, setType] = useState('');
@@ -18,7 +19,8 @@ function Notification(props) {
         setType('');
     }
 
-    function remove(indexed,id) {
+    function remove(indexed, id) {
+        props.call();
         const newNoti = notifications.filter((value, index) => index !== indexed);
         setNotifications(newNoti);
         getData.deleteNotification(id);
@@ -41,6 +43,8 @@ function Notification(props) {
                             setNewMessageId(value.userFrom._id);
                             setType('message');
                             setName(value.userFrom.name);
+                        } else {
+                            setType('invite');
                         }
                         remove(index,value._id);
                         // props.hideNot();
@@ -52,7 +56,7 @@ function Notification(props) {
                 
             </div>
         </div>
-        {type==='message'?<NewMessage  home={'home'} id={NewMessageId} name={name} show={hideManasession} />:null}
+        {type==='message'?<NewMessage  home={'home'} id={NewMessageId} name={name} show={hideManasession} />:type==='invite'?<Join  onClick = {hideManasession}/>:null}
         </>);
 }
 

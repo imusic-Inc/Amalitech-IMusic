@@ -1,6 +1,6 @@
 import LeaveCart from '../components/leaveCart';
 import Members from '../home/members'
-import MyMessage from './playlist'
+import MyPlaylist from './playlist'
 import Player from '../players/player';
 import Activeuserscart from './activeuserscart';
 import AddToPlayList from './addToPlayList';
@@ -321,7 +321,7 @@ pauseOnHover
            {expand?<AddToPlayList show = {showAndHide} id={paths.id}  />:<></>} 
             <Activeuserscart value={messages } id={paths.id} />
             <Members value={participant} ownerId = {owerId} />
-            <MyMessage value={ playList } isAdmin={uid ===owerId} id={paths.id} type={type} />
+            <MyPlaylist value={ playList } isAdmin={uid ===owerId} id={paths.id} type={type} />
             {auth ? <PlayerConrols auth={setAuth} current={current}  isAdmin={owerId} uid={uid} id={paths.id} type={type} /> : <Player current={current} />}
             {notPart?<Passcode pass={paths.id} show = {show} link={link} />:null}
         </>

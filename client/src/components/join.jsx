@@ -69,7 +69,7 @@ function Join(props) {
                 setTimeout(() => {
                     navigate(link, { replace: false });
                     if (invite) {
-                        declineFun(invite);
+                        getData.rejectInvite('invite/reject', { "invitationId": invite });
                     };
                 }, 500)
             }

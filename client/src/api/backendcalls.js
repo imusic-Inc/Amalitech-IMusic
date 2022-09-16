@@ -441,7 +441,7 @@ withCredentials:true,
     }
 
     const __deleteNotification = async(id) => {
-        const result = await fetch('notification/clear/' + id, {
+        const result = await fetch(link+'notification/clear/' + id, {
             method: 'DELETE',
             mode: 'cors',
             credentials: "include",

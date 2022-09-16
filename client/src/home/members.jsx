@@ -45,7 +45,7 @@ function Members(props) {
 
         <div className="flex-1 text-right">
                   <div onClick={() => {
-                      setexpand("75%");
+                      setexpand("70%");
                       seticonShow(!iconShow);
                   }} className="pr-2 btn" style={{ display: !iconShow ? "none" : "block" }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16"

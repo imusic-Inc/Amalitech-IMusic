@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PlayList from "../components/playList";
 import store from "../redux/store"
-function MyMessage({ value,isAdmin,type,id }) {
+function MyPlaylist({ value,isAdmin,type,id }) {
     const [expand, setexpand] = useState("50px");
     const [iconShow, seticonShow] = useState(true);
    
@@ -30,7 +30,7 @@ function MyMessage({ value,isAdmin,type,id }) {
 
         <div className="flex-row flex-center">
                   <div onClick={() => {
-                      setexpand("75%");
+                      setexpand("70%");
                       seticonShow(!iconShow);
                   }} className="pr-2 btn" style={{ display: !iconShow ? "none" : "block" }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16"
@@ -72,4 +72,4 @@ function MyMessage({ value,isAdmin,type,id }) {
   );
 }
 
-export default MyMessage;
+export default MyPlaylist;

@@ -104,7 +104,7 @@ function Auth(props) {
               With a free account, you can listen to full songs.
             </h1>
             <div className="login-btn btn p-1 mb-1">
-              <a data-testid="signin" href={`https://accounts.spotify.com/en/authorize?response_type=token&client_id=54673c0582e44ae4af3c2b345ab1bbe7&redirect_uri=https://imusicroom.herokuapp.com/login&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state&show_dialog=true
+              <a data-testid="signin" href={`https://accounts.spotify.com/en/authorize?response_type=token&client_id=59b2da7def1346a4bb2be861db81dd39&redirect_uri=https://imusicroom.herokuapp.com/login&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state&show_dialog=true
 `}>
                 <span className="btn-login">
                   {pathed && pathed.length > 10 ? "LOADING..." : "SIGN UP FREE"}
@@ -114,7 +114,7 @@ function Auth(props) {
             <h6 className="p-01 pt-3">
               Already have and account?{" "}
           <a
-                href={`https://accounts.spotify.com/en/authorize?response_type=token&client_id=54673c0582e44ae4af3c2b345ab1bbe7&redirect_uri=https://imusicroom.herokuapp.com/login&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state&show_dialog=true
+                href={`https://accounts.spotify.com/en/authorize?response_type=token&client_id=59b2da7def1346a4bb2be861db81dd39&redirect_uri=https://imusicroom.herokuapp.com/login&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state&show_dialog=true
 `}
                 className="sign-in pl-1 btn"
               >

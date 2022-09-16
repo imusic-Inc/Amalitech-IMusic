@@ -128,15 +128,32 @@ const [expandInvite, setExpandInvite] = useState(false);
 
     // seting values of the room
     function setValues(value) {
+        if (participant !== value.participants) {
         setParticipant(value.participants);
-        setMessages(value.messages);
+        }
+        
+        if (messages  !== value.messages) {
+            setMessages(value.messages);
+        }
+
         // checking to remove duplicate members from the list
-        const set  = new Set(value.playlist?value.playlist:[]);
-        setplayList([...set]);
+        
+        const set = new Set(value.playlist ? value.playlist : []);
+        if (playList !== [...set]) {
+             setplayList([...set]);
+        }
         // setGuest(value.guest);
-        setOwerId(value.ownerId);
-        setCurrent([value.now_playing]);
-        setAllowInvite(value.can_invite);
+        if (owerId !== value.ownerId) {
+            setOwerId(value.ownerId);
+        }
+        if (current !== value.now_playing) {
+            setCurrent([value.now_playing]);
+        }
+        
+        if (allowInvite !== value.can_invite) {
+            setAllowInvite(value.can_invite);
+        }
+        
         link = '../room/' + value.id + '?name=' + value.name + '&admin=true&type=' + value.roomType;
     }
 
@@ -173,11 +190,16 @@ const [expandInvite, setExpandInvite] = useState(false);
                 const inde = paths.id.indexOf('@spotify');
                 init(paths.id.substring(0,inde));
                 setType('public');
-            } else {
-                getSession(paths.id);
+            } else {              
+            const interval = setInterval(() => {
+            getSession(paths.id);
+            if (type !== search.get("type")) {
                 setType(search.get("type"));
             }
-        }
+             }, 10000);
+            return () => clearInterval(interval);
+            };
+        };
     },[paths.id]);
 
 

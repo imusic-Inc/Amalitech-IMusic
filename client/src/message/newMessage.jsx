@@ -4,7 +4,7 @@ import { useEffect,useState } from "react";
 import getData from "../api/backendcalls";
 import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const sent = true;
+let sent = true;
 function NewMessage(props) {
     const cookies = new Cookies();
     const uid = cookies.get('uid');
@@ -78,7 +78,7 @@ function NewMessage(props) {
             setMessage('');
             if (sent) {
                 sent = false;
-                getData.createNotification('notification/new', { receiverId: props.id, alertMessage: 'new message', content: `Hello there, ${userName} sent you a message` });
+                getData.createNotification('notification/new', { receiverId: props.id, alertMessage: 'new message', content: `Hello there, ${userName} sent you a new message` });
             }
             }
             

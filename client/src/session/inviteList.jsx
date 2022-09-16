@@ -30,8 +30,6 @@ function InviteList(props) {
                     roomType: sessionResult.roomType,
                 }
                 setInvite(payload);
-            }).catch(() => {
-                
             });
         }
     }, []);

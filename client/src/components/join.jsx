@@ -41,11 +41,6 @@ function Join(props) {
         
     },[]);
 
-
-
-console.log(getInvite);
-
-
     function deleteFun(id) {
         getData.deleteSession('session/' + id);
         const getMySession = getSession.filter(value => value.id !== id);

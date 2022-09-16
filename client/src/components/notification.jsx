@@ -44,9 +44,9 @@ function Notification(props) {
                         }
                         remove(index,value._id);
                         // props.hideNot();
-                }} className="pl-1 card-column b-r-1 p-1 btn">
+                }} className="card-column b-r-1 p-01 btn">
                     <h4>{value.notificationType}</h4>
-                        <h6>{value.content}</h6>
+                        <small>{value.content}</small>
                     </div>);
                 }):<NotFound/>}
                 

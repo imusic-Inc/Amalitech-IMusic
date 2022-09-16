@@ -18,12 +18,11 @@ function Auth() {
   useEffect(() => {
     if (name.length > 3 && email.length > 5) {
       getData.getNotification('notification').then(value => {
-           console.log(value);
         if (value.status === 'success') {
-          if (value.data.notifications.length > 0) {
+          if (value.results > 0) {
             setNotification(value.data.notifications);
-          if (!search.get('n')) {
-            notificationShow('hello there you have about '+value.data.notifications.length+' new notifications','New Message');
+            if (!search.get('n')) {
+            notificationShow('hello there you have about ' + value.results + ' new notifications', 'New Message');
           } else {
             setNotificationClick(true);
           }
@@ -33,8 +32,6 @@ function Auth() {
     };
     }, [name,email]);
     
-    
-
      useEffect(() => {
         const name = cookies.get("name");
          const emil = cookies.get("email");

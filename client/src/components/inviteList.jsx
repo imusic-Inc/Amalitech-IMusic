@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'universal-cookie';
 import getData from '../api/backendcalls';
 function InviteList(props) {
     const cookies = new Cookies();
+    const [Invite, setInvite] = useState('Invite');
 const notify = (message) => {
         toast.info(message, {
             autoClose: 2000,
@@ -13,7 +15,7 @@ const notify = (message) => {
 function invite() {
     getData.inviteUser('invite', { "receiverEmailAddress": props.by, 'session': props.id }).then(value => {
         notify(value);
-        // if()
+        setInvite('Invited');
         getData.createNotification('notification/new', { receiverId: props.toId, alertMessage: 'invite', content: `Hello there, ${cookies.get('name')} invited you to participate in a room session.`});
     });
 }
@@ -39,8 +41,8 @@ pauseOnHover
             <h6 className="opacity-6">{props.by}</h6>
         </div>
     </div>
-        <div className="addPlayList bg-blue btn pt-01 pl-1 ml-1 mt-01 btn-default" onClick={invite}>
-    Invite
+            <div className={`addPlayList ${ Invite ==="Invite"?'bg-blue':'bg-danger'}  btn pt-01 pl-1 ml-1 mt-01 btn-default`} onClick={invite}>
+    {Invite}
         </div>
     </div>
     </>)

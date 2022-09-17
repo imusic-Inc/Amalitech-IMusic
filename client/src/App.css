@@ -1205,7 +1205,9 @@ width: 95%;
   .left-20{
     width: 100%;
     left: 5px;
+    /* bottom: 50px; */
   }
+  
   .mobileMenu{
     background-color: var(--secondary);
     width: 100%;
@@ -1341,7 +1343,12 @@ width: 95%;
   }
      .createSession {
        left: 5%;
+       width: 90%;
      }
+.join-session {
+  width: 95%;
+  left: 3%;
+}
 
     .messages-list {
       height: 85%;
@@ -1361,10 +1368,8 @@ width: 95%;
 
 
   .active-users {
+    top: 80px;
     width: 45%;
-    top: 50px;
-    height: 60%;
-    font-size: 18px;
   }
     .active-list {
       height: 50vh;

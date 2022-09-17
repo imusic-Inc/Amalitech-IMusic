@@ -35,7 +35,6 @@ const cookies = new Cookies();
       <PublicSessionImusic name={"IMusic Public Rooms"} type={'public' } />
     <PublicSessionImusic name={"IMusic Private Rooms"} type={'private' } />
 
-
       {genre.length < 1 ? <><LoadingSession /></> : genre.map(value => {
       // console.log(value)
                   return <PublicSession name={value.name} type={'public'} id={value.id} key={value.id} />

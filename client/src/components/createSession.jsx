@@ -132,7 +132,7 @@ pauseOnHover
 
             {visibility?<div className="pr-1 pl-1 pt-01">
                 <label htmlFor="password" className="opacity-6">iMusic Room Pass Code</label>
-                <input type="text" data-testid="passcode"  required={visibility}  minLength={5} className="playSearch p-1 w-100 mt-1"  onChange={event => setPassword(event.target.value)} placeholder="Room pass code" name="password" />
+                <input type="text" data-testid="passcode"  required={visibility}  minLength={5} className="playSearch p-1 p-p w-100 mt-1"  onChange={event => setPassword(event.target.value)} placeholder="Room pass code" name="password" />
             </div>:null}
             
 

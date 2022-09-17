@@ -18,7 +18,7 @@ function Auth(props) {
       authenticate(token, refresh);
     } else {
       const cookies_tokens = cookies.get("access_token");
-      const refresh_token = cookies.get("access_token");
+      const refresh_token = cookies.get("refresh_token");
       if (
         cookies_tokens &&
         cookies_tokens.length > 10 &&

@@ -101,7 +101,7 @@ function Auth(props) {
 
           <div className="flex-1 ">
             <h1 className="p-1 auth-h1">
-              With a free account, you can listen to full songs.
+              With a premium account, you can listen to full songs.
             </h1>
             <div className="login-btn btn p-1 mb-1">
               <a data-testid="signin" href={`https://accounts.spotify.com/en/authorize?response_type=token&client_id=59b2da7def1346a4bb2be861db81dd39&redirect_uri=https://imusicroom.herokuapp.com/login&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state&show_dialog=true

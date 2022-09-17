@@ -26,11 +26,17 @@ function Share(props) {
     }
 
     function shareWithFriend() {
-        notify('Link copied to clipboard');
+        const token = cookies.get("access_token");
+        if (token && token.length > 50) {
+             notify('Link copied to clipboard');
          setTimeout(() => {
              navigator.clipboard.writeText(`https://imusicroom.herokuapp.com/login#access_token=${cookies.get("access_token")}`);
              props.show();
         }, 1000);
+        } else {
+            notify('You have to login first');
+        }
+       
        
     }
 

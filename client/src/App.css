@@ -1353,6 +1353,9 @@ width: 95%;
   left: 3%;
 }
 
+ .password {
+   left: 20%;
+ }
     .messages-list {
       height: 85%;
     }

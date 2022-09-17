@@ -86,8 +86,8 @@ pauseOnHover
                 </div>
         </div>
         <div className="flex-row flex-center flex-space">
-            <h4>Share your account with friends:</h4>
-            <div className="btn-default btn" onClick={shareWithFriend}>Generate link</div>
+            <h5>Share your account with friends: </h5>
+            <div className="btn-default btn" onClick={shareWithFriend}> Generate link</div>
         </div>
     </div>
     </>);

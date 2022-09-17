@@ -84,7 +84,8 @@ function NewMessage(props) {
             
         });
     }
-
+const bot = window.screen.availWidth > 600 ? '80px' : null;
+const bot1 = window.screen.availWidth > 600 ? '5px' : null;
     return (  
 
         <>
@@ -99,7 +100,7 @@ pauseOnFocusLoss
 draggable
 pauseOnHover
 />
-         <div className="message" style={{bottom: props.home?'80px':null,}}>
+         <div className="message" style={{bottom: props.home?bot:null,}}>
 <div className="flex-row flex-center flex-space">
     <div className="flex-row flex-center">
         <h4 className="pl-1">{props.name}</h4>
@@ -132,7 +133,7 @@ pauseOnHover
             </div>
 
 
-<div className="chat-send" style={{bottom: props.home?'5px':null,}} >
+<div className="chat-send" style={{bottom: props.home?bot1:null,}} >
 <hr/>
 <textarea  className="char-textarea  bg-default" value={message} onChange={(event)=>setMessage(event.currentTarget.value)} name="message" id="message" cols="30" placeholder="Write a message..." rows="4"></textarea>
 </div>

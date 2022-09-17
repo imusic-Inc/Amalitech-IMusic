@@ -831,7 +831,7 @@ font-weight: 400;
 
 .account{
   position: fixed;
-  right: 1em;
+  right: 0px;
   top: 10px;
   z-index: 10;
 }

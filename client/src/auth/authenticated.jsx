@@ -20,9 +20,10 @@ function Auth() {
   // get user notification
   useEffect(() => {
     if (name.length > 3 && email.length > 5) {
-      getData.getNotification('notification').then(value => {
+       const interval = setInterval(() => {
+        getData.getNotification('notification').then(value => {
         if (value.status === 'success') {
-          if (value.results > 0) {
+          if (value.results > 0 && notification != value.data.notifications) {
             setNotification(value.data.notifications);
             if (!search.get('n') && click===1) {
             notificationShow('hello there you have about ' + value.results + ' new notifications', 'New Message');
@@ -31,7 +32,11 @@ function Auth() {
           }
           }
         }
-    });
+      });     
+  }, 30000);
+  return () => clearInterval(interval);
+
+      
     };
     }, [name,email,click]);
     

@@ -4,9 +4,12 @@ import generateRandomString from '../api/keygen';
 import getData from '../api/backendcalls';
 import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from "universal-cookie";
 function PassCode(props) {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const cookies = new Cookies();
+    const token = cookies.get("access_token");
     const notify = (message) => {
         toast.info(message, {
             autoClose: 2000,
@@ -14,10 +17,10 @@ function PassCode(props) {
     };
 
     const handleOnClick = () => {
-        if (password && password.length > 4) {
+        if (token && token.length > 50) {
+            if (password && password.length > 4) {
              notify("Joining room, Please wait...");
             getData.joinPrivateSession(`session/${props.pass}/session`, { lock: password }).then(value => {
-                console.log(value);
                 if (value.status !== "fail") {
                     notify(value.status);
                     navigate(props.link + '&v=' + generateRandomString(5), { replace: false });
@@ -25,17 +28,21 @@ function PassCode(props) {
                     if (props.invite) {
                         props.declineFun(props.invite);
                     };
-                }
+                };
                 if (value.message) {
                     notify(value.message);
                 } else {
                     notify(value.status);
-                }
+                };
                 
             });
         } else {
              notify('Wrong pass code');
-        }
+            };
+        } else {
+            notify('Sorry, You Are Not Allowed to Access This Room. Sign up!');
+        };
+        
     
      };
 

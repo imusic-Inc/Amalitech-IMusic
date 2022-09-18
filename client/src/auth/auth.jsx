@@ -31,7 +31,9 @@ function Auth(props) {
 
     if (pathed && pathed.length > 10 && userName && userName.length > 3) {
       if (window.location.href.includes("login")) {
-        navigate("../home", { replace: true });
+        const index = window.location.href.indexOf('Redirect_URL');
+        const rediect_url = window.location.href.substring(index + 13);
+        navigate(index > 10 ?rediect_url:"../home", { replace: true });
       } else {
         props.show();
       }

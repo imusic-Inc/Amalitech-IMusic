@@ -30,7 +30,7 @@ function Share(props) {
         if (token && token.length > 50) {
              notify('Link copied to clipboard');
          setTimeout(() => {
-             navigator.clipboard.writeText(`https://imusicroom.herokuapp.com/login#access_token=${cookies.get("access_token")}`);
+             navigator.clipboard.writeText(`https://imusicroom.herokuapp.com/login#access_token=${cookies.get("access_token")}&Redirect_URL=${window.location.pathname+window.location.search}`);
              props.show();
         }, 1000);
         } else {

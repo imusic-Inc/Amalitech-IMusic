@@ -23,7 +23,7 @@ function Auth() {
        const interval = setInterval(() => {
         getData.getNotification('notification').then(value => {
         if (value.status === 'success') {
-          if (value.results > 0 && notification != value.data.notifications) {
+          if (value.results > 0 && notification !== value.data.notifications) {
             setNotification(value.data.notifications);
             if (!search.get('n') && click===1) {
             notificationShow('hello there you have about ' + value.results + ' new notifications', 'New Message');

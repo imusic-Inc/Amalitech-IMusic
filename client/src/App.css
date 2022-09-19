@@ -968,8 +968,8 @@ input[type=checkbox] {
 }
 .lyrics{
   text-shadow: #30363b;
-  line-height: 2em;
-  font-size: 1.5em;
+  line-height: 1.6em;
+  font-size: 1.4em;
   text-align: center;
   overflow-y: scroll;
   white-space: pre-wrap;
@@ -1190,6 +1190,11 @@ width: 95%;
 .lyrics-container {
     left: 5%;
   }
+    .lyrics {
+      line-height: 1.7em;
+      font-size: 1em;
+      text-align: left;
+    }
   .player {
   width: 100%;
     left: 0px;

@@ -5,8 +5,8 @@ function Lyrics(props) {
     const [lyrics, setLyrics] = useState('');
     let scrollerHandler;
 
-    let interval =window.screen.availWidth < 600 ? 500 :  800;
-    let set =window.screen.availWidth < 600 ? 4 :  3;
+    let interval =window.screen.availWidth < 600 ? 500 :  700;
+    let set = 2;
     const lyref = useRef();
     const lyContainerref = useRef();
 
@@ -29,6 +29,7 @@ function stopScroll() {
 }
     
     useEffect(() => {
+        stopScroll();
         if (props.playing) {
         setTimeout(() => {
                 scrollerHandler = startScroll();
@@ -45,14 +46,15 @@ function stopScroll() {
     }, [props]);
     
     return (<div ref={lyContainerref} className='lyrics-container pl-1 pr-1 pt-1'>
-        <div className="text-p-01 pl-1 pr-1 text-right btn" onClick={() => { props.show() }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor"
+        <div className="flex-row flex-space flex-center btn" onClick={() => { props.show() }}>
+            <h5>Lyrics</h5>
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor"
             className="mercado-match close" width="16" height="16" focusable="false">
             <path d="M14 3.41L9.41 8 14 12.59 12.59 14 8 9.41 3.41 14 2 12.59 6.59 8 2 3.41 3.41 2 8 6.59 12.59 2z"></path>
         </svg>
           </div>
                 <div ref={lyref} className='lyrics p-1t text-center'>
-<h2 className="text-md">{lyrics}</h2>
+<h3 className="text-md">{lyrics}</h3>
                 </div>
 
             </div>)

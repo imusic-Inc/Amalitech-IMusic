@@ -5,8 +5,8 @@ function Lyrics(props) {
     const [lyrics, setLyrics] = useState('');
     let scrollerHandler;
 
-    let interval =window.screen.availWidth > 600 ? 500 :  700;
-    let set =window.screen.availWidth > 600 ? 4 :  3;
+    let interval =window.screen.availWidth < 600 ? 500 :  800;
+    let set =window.screen.availWidth < 600 ? 4 :  3;
     const lyref = useRef();
     const lyContainerref = useRef();
 

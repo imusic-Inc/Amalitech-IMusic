@@ -5,8 +5,8 @@ function Lyrics(props) {
     const [lyrics, setLyrics] = useState('');
     let scrollerHandler;
 
-    let interval =window.screen.availWidth < 600 ? 500 :  700;
-    let set = 2;
+    let interval = 900;
+    let set = 5;
     const lyref = useRef();
     const lyContainerref = useRef();
 
@@ -19,12 +19,14 @@ function Lyrics(props) {
         }
         }
        
-    }, interval);
-    return id;
+        }, interval);
+        
+    return  id;
     }
     
 
-function stopScroll() {
+    function stopScroll() {
+    lyref.current.scrollTo({ top: 0, behavior: 'smooth' });
     clearInterval(scrollerHandler);
 }
     
@@ -37,14 +39,17 @@ function stopScroll() {
         } else {
              stopScroll();
         }
+    }, [props.auth,props.name]);
+    
 
+    useEffect(() => {
         APIController.getLyrics(props.auth, props.name).then(value => {
             if (value) {
                 setLyrics(value)
             }
         }, [lyrics]);
-    }, [props]);
-    
+    }, [props.auth,props.name]);
+
     return (<div ref={lyContainerref} className='lyrics-container pl-1 pr-1 pt-1'>
         <div className="flex-row flex-space flex-center btn" onClick={() => { props.show() }}>
             <h5>Lyrics</h5>

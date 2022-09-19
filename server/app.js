@@ -9,7 +9,7 @@ const conversationRouter = require('./routes/conversationRoute')
 const privateMessageRouter = require('./routes/privateMessageRoute')
 const inviteRouter = require('./routes/invitationRoute');
 const notificationRouter = require('./routes/notificationRoutes')
-
+const lyricsFinder = require('lyrics-finder');
 
 const AppError = require('./utils/appError');
 const globalErrorhandler = require('./controllers/errorController');
@@ -113,6 +113,17 @@ app.use('/api/v1/conversation', conversationRouter);
 app.use('/api/v1/privateMessage', privateMessageRouter);
 app.use('/api/v1/invite', inviteRouter);
 app.use('/api/v1/notification', notificationRouter);
+
+
+app.get('/lyrics', (req, res) => {
+    const artist = req.query.artist;
+    const title = req.query.title;
+    console.log(artist,title);
+  (async function(artist, title) {
+      let lyrics = await lyricsFinder(artist, title) || "Not Found!";
+      res.json(lyrics)
+})(artist, title);
+});
 
 // app.all('*', (req, res, next) => {
 //     // res.status(404).json({

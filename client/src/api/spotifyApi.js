@@ -144,7 +144,7 @@ const APIController = (function() {
 
 
     const _getLyrics = async (artist, song) => {
-        const result = await fetch(`https://github-auth-node.herokuapp.com/lyrics?artist=${artist}&title=${song}}`, {
+        const result = await fetch(`/lyrics?artist=${artist}&title=${song}`, {
             method: 'GET',
         });
         const data = await result.json();

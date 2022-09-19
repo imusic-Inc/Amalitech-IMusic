@@ -4,13 +4,15 @@ import APIController from "../api/spotifyApi";
 function Lyrics(props) {
     const [lyrics, setLyrics] = useState('');
     let scrollerHandler;
-
-    let interval = 900;
-    let set = 5;
     const lyref = useRef();
     const lyContainerref = useRef();
 
+
+    
+
     function startScroll() {
+        let set = 2;
+        let interval = 400;
         let id = setInterval(function () {
         if (lyref.current && lyContainerref.current) {
              lyref.current.scrollBy(0, set);

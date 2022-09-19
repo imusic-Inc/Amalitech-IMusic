@@ -24,6 +24,7 @@ export default function PlayerConrols(props) {
     };
   const [lyris, setLyris] = useState("");
   const [isplaying, setIsPlaying] = useState(false);
+  const [length, setLength] = useState(0);
   const [token, setToken] = useState("");
   const cookies = new Cookies();
   const tokened = cookies.get('access_token');
@@ -179,6 +180,7 @@ pauseOnHover
         showSaveIcon
         callback={state => {
           changState(state.isPlaying);
+          setLength(state.track.durationMs);
           if (state.isPlaying) {
             document.title = state.track.name;
             nowPlaying = state.track.uri;
@@ -204,7 +206,7 @@ pauseOnHover
   }}
       />:<>Loading...</>}
       
-      {isplaying?<Lyrics  name={lyris.length > 0 ? lyris[0].name:""} playing={isplaying} auth={lyris.length > 0 ? lyris[0].auth:""} show = {show} />:<></>}
+      {isplaying?<Lyrics  name={lyris.length > 0 ? lyris[0].name:""} length={length} playing={isplaying} auth={lyris.length > 0 ? lyris[0].auth:""} show = {show} />:<></>}
     </div>
 </>
    

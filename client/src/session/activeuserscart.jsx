@@ -66,7 +66,7 @@ pauseOnHover
         
  <div className="flex-row flex-center flex-space pt-01 live-chat">
          <h3 className="pl-1">Live chat</h3>
-        <div title="Send" onClick={sendMessage} className="pr-2 btn" >
+        <div title="Send" onClick={sendMessage} className="pr-1 btn" >
                 <svg style={{ width: '24px', height: '24px' }} viewBox="0 0 24 24">
     <path fill="currentColor" d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
 </svg>

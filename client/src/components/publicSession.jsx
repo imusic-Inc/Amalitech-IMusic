@@ -19,7 +19,7 @@ function PublicSession(props) {
     
     return (
         <>
-            <h3 id="trending" className="pt-1">{props.name}</h3>
+            <h3 id="trending" className="pt-1 pl-01">{props.name}</h3>
             
           <div className="flex-row p-session hide-scrollbar">
                 {playList.length < 1 ? <SessionTrack key={ Math.random()} /> :playList.map(value => {

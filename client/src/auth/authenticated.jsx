@@ -52,7 +52,7 @@ function Auth() {
     }
     
     return (<>
-    <div className="flex-row flex-center account">       
+    <div className="flex-row flex-center account pr-1">       
        <svg  className="btn" style={{width:"30px",height:"30px"}} onClick={() => {setNotificationClick(!NotificationClick)}} strokeWidth="1.5" viewBox="0 0 24 24" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path
@@ -72,7 +72,8 @@ function Auth() {
                     <small>{ email }</small>
             </div>
         </div>
-        </div>
+      </div>
+      
           {NotificationClick ? <Notification notification={notification} call={call}  hideNot={hideNot} /> : <></>}
     </>);
 }

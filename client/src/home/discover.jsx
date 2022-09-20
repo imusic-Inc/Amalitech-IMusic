@@ -26,7 +26,7 @@ const cookies = new Cookies();
   
   return (
     <div className=" pt-1 left-20">
-      <div className='pt-2'>
+      <div className='pt-2 pl-01'>
 <h1 className="fixed bg-primary title">iMusic Rooms</h1>
       </div>
       

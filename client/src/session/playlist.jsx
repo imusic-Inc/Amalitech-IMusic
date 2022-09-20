@@ -42,7 +42,7 @@ function MyPlaylist({ value,isAdmin,type,id }) {
                   <div onClick={() => {
                       setexpand("50px");
                       seticonShow(!iconShow);
-                  }} className="pr-2 btn" style={{ display: iconShow ? "none" : "block" }}>
+                  }} className="pr-1 btn" style={{ display: iconShow ? "none" : "block" }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16"
                     fill="currentColor" className="mercado-match" width="16" height="16" focusable="false">
                     <path d="M1 5l7 4.61L15 5v2.39L8 12 1 7.39z"></path>
@@ -55,7 +55,7 @@ function MyPlaylist({ value,isAdmin,type,id }) {
           
               <div className="messages-list"> 
                   
-                  <div onClick={addAll} style={{display:type==='private'?isAdmin?'block':'none':'block'}} className="bg-danger p-01 text-center btn">
+                  <div onClick={addAll} style={{display:type==='private'?isAdmin?'block':'none':'block'}} className="bg-danger text-center btn">
                       Add All To Query
                   </div>
 

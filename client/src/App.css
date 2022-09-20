@@ -980,7 +980,7 @@ input[type=checkbox] {
     width: 50%;
     position: fixed;
     top: 10vh;
-    left: 21%;
+    left: 20.5%;
     height: 70vh;
   z-index: 50;
   border-radius: 10px;
@@ -994,7 +994,7 @@ input[type=checkbox] {
 padding: 8px;
 position: absolute;;
 
-width: 95%;
+width: 97.5%;
 }
 .logIn-alert{
   width: 100vw;

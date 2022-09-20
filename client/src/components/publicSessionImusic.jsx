@@ -62,7 +62,7 @@ draggable
 pauseOnHover
 />
             {sessions.length < 1 ? null :<div>
-            <h3 className="pt-1">{props.name}</h3>
+            <h3 className="pt-1 pl-01">{props.name}</h3>
             <div className="flex-row p-session hide-scrollbar">
                 {sessions.map(value => {
                     return props.type === 'private' ? <div key={value._id} onClick={() => { 

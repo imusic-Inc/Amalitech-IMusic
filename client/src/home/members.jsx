@@ -57,7 +57,7 @@ function Members(props) {
                   <div onClick={() => {
                       setexpand("50px");
                       seticonShow(!iconShow);
-                  }} className="pr-2 btn" style={{ display: iconShow ? "none" : "block" }}>
+                  }} className="pr-1 btn" style={{ display: iconShow ? "none" : "block" }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16"
                     fill="currentColor" className="mercado-match" width="16" height="16" focusable="false">
                     <path d="M1 5l7 4.61L15 5v2.39L8 12 1 7.39z"></path>
@@ -66,7 +66,9 @@ function Members(props) {
 
         </div>
       </div>
-      <input type="text" className="playSearch w-100 p-1" onChange={(event)=>SetSearch(event.currentTarget.value)} placeholder="Username or Email" name="name"/>
+    <div className="pr-1 pl-01">
+               <input type="text" className="playSearch w-100 p-1" onChange={(event)=>SetSearch(event.currentTarget.value)} placeholder="Username or Email" name="name"/>
+    </div>
           <hr className="opacity-6" />
           <div className="messages-list"> 
               {searced.length>0 ? searced.map(value => <MemberList key={value._id} owerId={props.ownerId} value={ value } showMessage={showManasession} />):null}

@@ -103,7 +103,7 @@ pauseOnHover
          <div className="message" style={{bottom: props.home?bot:null,}}>
 <div className="flex-row flex-center flex-space">
     <div className="flex-row flex-center">
-        <h4 className="pl-1">{props.name}</h4>
+        <h4 className="pl-01">{props.name}</h4>
     </div>
 
 
@@ -135,7 +135,7 @@ pauseOnHover
 
 <div className="chat-send" style={{bottom: props.home?bot1:null,}} >
 <hr/>
-<textarea  className="char-textarea  bg-default" value={message} onChange={(event)=>setMessage(event.currentTarget.value)} name="message" id="message" cols="30" placeholder="Write a message..." rows="4"></textarea>
+<textarea  className="char-textarea  bg-default" value={message} onChange={(event)=>setMessage(event.currentTarget.value)} name="message" id="message" cols="30" placeholder=" Write a message..." rows="4"></textarea>
 </div>
 </div>
         </>

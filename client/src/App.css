@@ -55,7 +55,6 @@ small{
 .z-index-5{
   z-index: 1;
 }
-
 .btn {
   mask-type: luminance;
   cursor: pointer;
@@ -79,6 +78,13 @@ hr {
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+}
+.b-r-01 {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
 }
 a{
   text-decoration: none;
@@ -412,6 +418,10 @@ h3 {
   margin-left: 0.5rem;
 }
 
+.mt-2 {
+  margin-top: 2rem;
+}
+
 .mt-1 {
   margin-top: 1rem;
 }
@@ -690,6 +700,11 @@ color: rgb(176, 23, 23);
   border: none;
   padding: 4px;
   margin-top: 8px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
 }
 
 .playSearch-textArea {

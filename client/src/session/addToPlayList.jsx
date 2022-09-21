@@ -103,8 +103,8 @@ pauseOnHover
             <div className='addToPlayList  bg-default' >
                 <div className='flex-row '>
                     <div className='flex-4'>
-<div className="p-1">
-        <div className="flex-row flex-center pl-1">
+<div className="p-01">
+        <div className="flex-row flex-center">
             <svg xmlns="http://www.w3.org/2000/svg"  onClick={props.show} viewBox="0 0 16 16" data-supported-dps="16x16"
                     fill="currentColor" className="mercado-match btn close" width="16" height="16" focusable="false">
                    <path d="M14 3.41L9.41 8 14 12.59 12.59 14 8 9.41 3.41 14 2 12.59 6.59 8 2 3.41 3.41 2 8 6.59 12.59 2z"></path>
@@ -113,15 +113,15 @@ pauseOnHover
                             </div>
 
      <div className="flex-row flex-center flex-space">
-                                <h5 className="p-1">Playlist Manager</h5>
+                                <h5 className="p-01">Playlist Manager</h5>
                                 <div onClick={addToPlayList} className='btn btn-default p-01 bg-success'>
                                 Save
                                 </div>
         </div>
                         </div>
                         
-                        <div className='playList-list-save pl-1'>
-                           <table className="p-1">
+                        <div className='playList-list-save'>
+                           <table className="p-01">
                                 <thead>
  <tr>
         <th className="opacity-6 text-left">Title</th>

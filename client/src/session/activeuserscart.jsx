@@ -80,7 +80,7 @@ pauseOnHover
 </div>
 <div className="chat-send-active">
 <hr/>
-<textarea  onChange={(event)=>setmessage(event.currentTarget.value)} value={message} className="char-textarea  bg-secondary" name="message" id="message"  placeholder="Write a comment..." rows="4"></textarea>
+<textarea  onChange={(event)=>setmessage(event.currentTarget.value)} value={message} className="char-textarea  bg-secondary" name="message" id="message"  placeholder=" Write a comment..." rows="4"></textarea>
 </div>
                 </div>
         </div>

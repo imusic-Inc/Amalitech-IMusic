@@ -109,7 +109,7 @@ draggable
 pauseOnHover
 />
       
-       <div className="join-session b-r-1 box-shadow">
+       <div className="join-session bg-secondary b-r-1 box-shadow">
 <div className="flex-row flex-center flex-space">
     <div className="flex-row flex-center">
         <h4 className="pl-1">Join session</h4>

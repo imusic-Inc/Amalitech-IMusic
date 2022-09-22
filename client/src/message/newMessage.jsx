@@ -4,6 +4,7 @@ import { useEffect,useState } from "react";
 import getData from "../api/backendcalls";
 import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NotFound from "../components/404";
 let sent = true;
 function NewMessage(props) {
     const cookies = new Cookies();
@@ -125,9 +126,9 @@ pauseOnHover
 
             <div className="income-messages-list">
 
-                    {messages.map(value => {
+                    {messages.length>0? messages.map(value => {
                       return  <Message  key={Math.random()} value={{user:{ name: value.name },message: value.message}}><hr className="opacity-6" /></Message>
-                    })}
+                    }):<NotFound/>}
                 
                 <br /><br /><br />
             </div>

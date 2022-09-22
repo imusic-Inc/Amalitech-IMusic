@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import getData from "../api/backendcalls";
+import NotFound from "../components/404";
 import MemberList from "../message/memberList";
 import NewMessage from "../message/newMessage";
 function Users(props) {
@@ -75,7 +76,7 @@ useEffect(() => {
         </div>
       </div>
      <div className="pr-1 pl-01">
-        <input type="text" className="playSearch w-100 p-1" onChange={(event)=>SetSearch(event.currentTarget.value)} placeholder=" Username or Email" name="name"/>
+        <input type="text" className="playSearch w-100 p-1" onChange={(event)=>SetSearch(event.currentTarget.value)} placeholder=" &#128269; Search members" name="name"/>
     </div>
           
           <div className="messages-list"> 
@@ -86,7 +87,7 @@ useEffect(() => {
                   }
               }
               
-              ) : null}
+              ) : <NotFound/>}
           </div>
       </div>
 

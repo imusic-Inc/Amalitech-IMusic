@@ -93,7 +93,7 @@ pauseOnFocusLoss
 draggable
 pauseOnHover
 />
-        <div className="createSession b-r-1 bg-default p-01 box-shadow">
+        <div className="createSession b-r-1 bg-secondary p-01 box-shadow">
         <div className="flex-row flex-center flex-space p-1">
     <div className="flex-row flex-center">
         <h4 className="">Let setup your iMusic Room</h4>
@@ -124,7 +124,7 @@ pauseOnHover
             </div>
 
             <div className="pt-01 mt-1 flex-row flex-center">
-                <label htmlFor="" className="pr-1 opacity-6"   >Is your iMusic Room private?</label>
+                <label htmlFor="" className="pr-1 opacity-6"  >Is your iMusic Room private?</label>
                 <div className="flex-row flex-center">
                    <div className="pr-1" >NO</div>  <input data-testid="roomtype" type="checkbox" value={visibility} onChange={event => {setVisibility(event.target.checked)}} id="switch" /><label id="switched" htmlFor="switch">Toggle</label> <div className="pl-1" >YES</div>
                 </div>

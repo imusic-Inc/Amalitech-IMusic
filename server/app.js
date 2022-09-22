@@ -118,7 +118,6 @@ app.use('/api/v1/notification', notificationRouter);
 app.get('/lyrics', (req, res) => {
     const artist = req.query.artist;
     const title = req.query.title;
-    console.log(artist,title);
   (async function(artist, title) {
       let lyrics = await lyricsFinder(artist, title) || "Not Found!";
       res.json(lyrics)

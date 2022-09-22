@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import NotFound from "../components/404";
 import MemberList from "../message/memberList";
 import NewMessage from "../message/newMessage";
 function Members(props) {
@@ -71,7 +72,7 @@ function Members(props) {
     </div>
          
           <div className="messages-list"> 
-              {searced.length>0 ? searced.map(value => <MemberList key={value._id} owerId={props.ownerId} value={ value } showMessage={showManasession} />):null}
+              {searced.length>0 ? searced.map(value => <MemberList key={value._id} owerId={props.ownerId} value={ value } showMessage={showManasession} />):<NotFound/>}
           </div>
       </div>
       {showNewMessage ? <NewMessage show={hideManasession} id={NewMessageId} name={NewMessageReciever} />:<></>}

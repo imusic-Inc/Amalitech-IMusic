@@ -1023,7 +1023,12 @@ width: 97.5%;
   justify-content: center;
   align-items: center;
 }
-
+.line-3{
+  max-lines: 3;
+}
+.line-2 {
+  max-lines: 2;
+}
 .login-card{
   width: 60vw;
   background: linear-gradient(0deg, var(--secondary), var(--primary) 40%, rgb(18, 31, 41));;

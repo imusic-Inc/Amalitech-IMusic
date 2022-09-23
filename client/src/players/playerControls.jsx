@@ -8,8 +8,10 @@ import getData from "../api/backendcalls";
 import APIController from "../api/spotifyApi";
 import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { memo } from "react";
 let nowPlaying = 'spotify:track:4WUKvuiIgKtTiuhpnAw01W';
-export default function PlayerConrols(props) {
+let setProps  = true;
+function PlayerConrols(props) {
   const [track, setTrack] = useState([{
   "image": "https://i.scdn.co/image/ab67616d000048516b93b86e8411c1eae6686497",
   "name": "Introduction",
@@ -21,7 +23,8 @@ export default function PlayerConrols(props) {
         toast.info(message, {
             autoClose: 2000,
         });
-    };
+  };
+  
   const [lyris, setLyris] = useState("");
   const [isplaying, setIsPlaying] = useState(false);
   const [length, setLength] = useState(0);
@@ -38,10 +41,10 @@ export default function PlayerConrols(props) {
   }, [setToken, tokened]);
   
   useEffect(() => {
-    if (props.current.length > 0 && props.current[0].image && props.current[0].image.length>10) {
+    if (props.current.length > 0 && props.current[0].image && props.current[0].image.length > 10) {
       setTrack(props.current)
     }
-  }, [props]);
+  }, []);
 
   function show() {
     setIsPlaying(false)
@@ -144,7 +147,8 @@ const payload  =  {
             }
         });
 
-   }, [track, track]);
+   }, [track]);
+  
   
   function startLyris(url) {
     const newTrack = track.filter(value => {
@@ -213,3 +217,5 @@ pauseOnHover
     
   )
 }
+
+export default memo(PlayerConrols);

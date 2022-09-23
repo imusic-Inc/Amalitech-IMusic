@@ -113,8 +113,6 @@ app.use('/api/v1/conversation', conversationRouter);
 app.use('/api/v1/privateMessage', privateMessageRouter);
 app.use('/api/v1/invite', inviteRouter);
 app.use('/api/v1/notification', notificationRouter);
-
-
 app.get('/lyrics', (req, res) => {
     const artist = req.query.artist;
     const title = req.query.title;

@@ -68,7 +68,7 @@ function Members(props) {
         </div>
       </div>
     <div className="pr-1 pl-01">
-               <input type="text" className="playSearch w-100 p-1" onChange={(event)=>SetSearch(event.currentTarget.value)} placeholder=" Username or Email" name="name"/>
+               <input type="text" className="playSearch w-100 p-1" onChange={(event)=>SetSearch(event.currentTarget.value)} placeholder=" &#128269; Search members" name="name"/>
     </div>
          
           <div className="messages-list"> 

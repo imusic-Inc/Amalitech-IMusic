@@ -5,6 +5,7 @@ import getData from "../api/backendcalls";
 import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NotFound from "../components/404";
+import { useRef } from "react";
 let sent = true;
 function NewMessage(props) {
     const cookies = new Cookies();
@@ -12,13 +13,20 @@ function NewMessage(props) {
     const userName = cookies.get('name');
     const [message_id,setMessage_id] = useState()
     const [message,setMessage] = useState()
-    const [messages,setMessages] = useState([])
+    const [messages, setMessages] = useState([])
+    const ref = useRef();
  const notify = (message) => {
         toast.info(message, {
             autoClose: 2000,
         });
     };
     useEffect(() => {
+         setTimeout(() => {
+        if (ref.current) {
+             ref.current.scrollTo(0, ref.current.scrollHeight);
+        }
+         }, 1000);
+        
         getData.startMessage('conversation/add', {
             "senderId": uid,
             "receiverId": props.id
@@ -55,7 +63,7 @@ function NewMessage(props) {
                 } else {
                     name = userName;
                 }
-                return { name: name, message: value.text };
+                return { name: name, message: value.text,createdAt:value.createdAt };
             });
             
             if (mes.length !== messages.length) {
@@ -82,9 +90,9 @@ function NewMessage(props) {
                 getData.createNotification('notification/new', { receiverId: props.id, alertMessage: 'new message', content: `Hello there, ${userName} sent you a new message` });
             }
             }
-            
         });
     }
+
 const bot = window.screen.availWidth > 600 ? '80px' : null;
 const bot1 = window.screen.availWidth > 600 ? '5px' : null;
     return (  
@@ -124,10 +132,9 @@ pauseOnHover
 </div>
 <hr className="bg-primary"/>
 
-            <div className="income-messages-list">
-
-                    {messages.length>0? messages.map(value => {
-                      return  <Message  key={Math.random()} value={{user:{ name: value.name },message: value.message}}><hr className="opacity-6" /></Message>
+            <div ref={ref} className="income-messages-list">
+                    {messages.length > 0 ? messages.map(value => {
+                      return  <Message  key={Math.random()} value={{user:{ name: value.name },message: value.message,createdAt:value.createdAt}}><hr className="opacity-6" /></Message>
                     }):<NotFound/>}
                 
                 <br /><br /><br />

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import getData from "../api/backendcalls";
 import Message from "../message/message";
@@ -10,6 +10,7 @@ function Activeuserscart(props) {
         const [messages, setMessages] = useState([]);
         const cookies = new Cookies();
         const name = cookies.get("name");
+        const ref = useRef();
 const notify = (message) => {
         toast.error(message, {
             autoClose: 2000,
@@ -21,7 +22,15 @@ const notify = (message) => {
         }, [props.value]);
 
 
-useEffect(() => {
+        useEffect(() => {
+        
+        setTimeout(() => {
+        if (ref.current) {
+                ref.current.scrollTo(0, ref.current.scrollHeight);
+                console.log(ref.current);
+        }
+        }, 5000);
+
         const interval = setInterval(() => {
                 if (props.id.indexOf('@spotify') < 0) {
                      getData.getSessionById('session', props.id).then((value) => {
@@ -72,7 +81,7 @@ pauseOnHover
 </svg>
             </div>
       </div>
-                <div className='active-list p-01'>
+                <div ref={ref} className='active-list p-01'>
 
         <div className="list">
                                         {messages.map(value => <Message key={value._id} value={value} />)}

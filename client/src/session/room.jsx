@@ -84,7 +84,10 @@ const [expandInvite, setExpandInvite] = useState(false);
                      
             if (value.status === 'success') {
           if (value.data.notifications.length > 0 && notifcation.length !== value.data.notifications) {
-            setNotifcation(value.data.notifications);
+            if (notifcation !== value.data.notifications) {
+               setNotifcation(value.data.notifications);
+           }
+              
           if (!search.get('n')) {
             notificationShow('hello there you have about '+value.data.notifications.length+' new notifications','New Message');
           } else {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import NotFound from "../components/404";
 import PlayList from "../components/playList";
 import store from "../redux/store"
 function MyPlaylist({ value,isAdmin,type,id }) {
@@ -53,14 +54,14 @@ function MyPlaylist({ value,isAdmin,type,id }) {
     </div>
               <div className="messages-list"> 
                   
-                  <div onClick={addAll} style={{display:type==='private'?isAdmin?'block':'none':'block'}} className="bg-danger p-01 text-center btn">
+                 {value.length>0? <div onClick={addAll} style={{display:type==='private'?isAdmin?'block':'none':'block'}} className="bg-danger p-01 text-center btn">
                       Add All To Query
-                  </div>
+                  </div>:<></>}
 
 
-                  {value.map(values => {
+                  {value.length>0?value.map(values => {
                       return <PlayList key={values.audio+values.len} isAdmin={isAdmin} type={type} id={id}  values={values}/>
-                     })}
+                     }):<NotFound/>}
 <br />
     
           </div>
